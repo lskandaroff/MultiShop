@@ -4,7 +4,7 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=150, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
-    image = models.ImageField(upload_to='department/images/')
+    image = models.ImageField(upload_to='category/images/')
     product_count = models.IntegerField()
 
     def __str__(self):
@@ -44,7 +44,7 @@ class Product(models.Model):
 
 class ProductImage(models.Model):
     image = models.ImageField(upload_to='products/images/')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
 
     def __str__(self):
         return self.image.name
