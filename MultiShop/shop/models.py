@@ -35,7 +35,7 @@ class Product(models.Model):
     sizes = models.ManyToManyField(Size)
     colors = models.ManyToManyField(Color)
     discount = models.IntegerField(default=0)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='products')
 
     def __str__(self):
         return self.name
