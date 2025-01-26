@@ -6,6 +6,8 @@ from .models import *
 class ProductListView(ListView):
     model = Product
     context_object_name = 'products'
+            
+
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
@@ -18,9 +20,9 @@ class ProductByCategoryView(ProductListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
-        # category = Category.objects.filter(slug=self.kwargs.get('slug'))
-        # products = category.products.all()
-        products = Product.objects.filter(category__slug=self.kwargs.get('slug'))
+        category = Category.objects.get(slug=self.kwargs.get('slug'))
+        products = category.products.all()
+        # products = Product.objects.filter(category__slug=self.kwargs.get('slug'))
         context['products'] = products
         return context
 
