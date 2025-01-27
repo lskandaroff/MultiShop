@@ -109,7 +109,7 @@
         <div class="row px-xl-5 pb-3">
             {% for category in categories %}
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <a class="text-decoration-none" href="">
+                <a class="text-decoration-none" href="{% url 'products_by_category' category.slug%}">
                     <div class="cat-item d-flex align-items-center mb-4">
                         <div class="overflow-hidden" style="width: 100px; height: 100px;">
                             <img class="img-fluid" src="{{ category.image.url }}" alt="">
@@ -144,7 +144,7 @@
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">{{product.name}}</a>
+                        <a class="h6 text-decoration-none text-truncate" href="{% url 'products_detail' product.slug %}">{{product.name}}</a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <h5>${{product.price}}</h5><h6 class="text-muted ml-2"><del>${{product.discount}}</del></h6>
                         </div>

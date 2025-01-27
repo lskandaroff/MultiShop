@@ -1,12 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import *
 
 class ProductListView(ListView):
     model = Product
     context_object_name = 'products'
-            
 
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -25,5 +24,14 @@ class ProductByCategoryView(ProductListView):
         # products = Product.objects.filter(category__slug=self.kwargs.get('slug'))
         context['products'] = products
         return context
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'shop/detail.html'
+    context_object_name = 'product'
+
+
+
+
 
 
